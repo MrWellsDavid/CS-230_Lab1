@@ -1,4 +1,8 @@
 //Courses.h
+#include<iostream>
+#include<string>
+using namespace std;
+
 class Courses{
       public:
              //constructor
@@ -8,13 +12,13 @@ class Courses{
           Courses(string cName, string cID, int credits);
           
           //accessors
-          //void print() const;
+          void print() const;
           string getCourse() const;
           string getCourseID() const;
 
           
           //mutators
-          void setCourse(string cName, string last);
+          void setCourse(string cName, int course_cred);
 
           void setID(string);
       private:
