@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Students.h"
+#include "Courses.h"
 using namespace std;
 int addStudents(Students* stuPTR, int counter)
 {
