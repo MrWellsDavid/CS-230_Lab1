@@ -3,6 +3,8 @@
 
 using namespace std;
 
+
+
 Courses::Courses(){  //default constructor definition
  
     course_name = "";
@@ -10,7 +12,6 @@ Courses::Courses(){  //default constructor definition
     course_cred = 0;
    
 }
-
 
 
 Courses::Courses(string cName, string cID, int credits){
@@ -29,13 +30,15 @@ void Courses::print()const{
 }
 
 //mutators
-void Courses::setCourse(string cName, int credits){
+void Courses::setCourse(string cName){
      course_name = cName;
-     course_cred = credits;
+ 
+}
+void Courses::setCredits(int credits){
+	course_cred= credits;
 }
  
- 
- void Courses::setID(string cID)
+void Courses::setCID(string cID)
  {
       courseID = "CS-" + cID;
  }

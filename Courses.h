@@ -18,9 +18,11 @@ class Courses{
 
           
           //mutators
-          void setCourse(string cName, int course_cred);
+          void setCourse(string cName);
+          void setCID(string cID);
+          void setCredits(int credits);
+        
 
-          void setID(string);
       private:
               string course_name;
               string courseID;

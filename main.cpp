@@ -2,7 +2,9 @@
 #include <cstdlib>
 #include "Students.h"
 #include "Courses.h"
+
 using namespace std;
+
 int addStudents(Students* stuPTR, int counter)
 {
     string first, last, id;
@@ -28,6 +30,41 @@ int addStudents(Students* stuPTR, int counter)
         
         //move the pointer
         stuPTR++;
+        //update the counter
+        counter++; 
+    }
+    
+    
+    return counter;
+}
+int addCourses(Courses* corPTR, int counter)
+{
+    string cName,  courseID;
+	int credits;
+    
+    int corNum;
+    cout <<"How many courses do you want to enter?: ";
+    cin >>corNum;
+    for (int i = 0; i < counter; i++)
+        corPTR++;        
+        
+    for (int i = 0; i < corNum; i++)
+    {
+        cout <<"Enter Course \n \n";
+        cin >>cName;
+        cout <<"Enter course ID: \n";
+        cin >>courseID;
+        cout <<"Enter Credit hours \n";
+		cin >>credits;
+        
+        //update the object where you're pointing
+        corPTR ->setCourse(cName);
+        corPTR ->setCID(courseID);
+        corPTR ->setCredits(credits);
+        
+        
+        //move the pointer
+        corPTR++;
         //update the counter
         counter++; 
     }
@@ -69,7 +106,9 @@ int main(int argc, char *argv[])
 	
     int option;
     Students stu[4];  //student buffer
-    int rec = 0;  //record counter
+    Courses cor[10]; // Course buffer
+	int recStudent = 0;  //record counter 
+    int recCourse = 0; // course counter
     
     do
     {
@@ -78,13 +117,13 @@ int main(int argc, char *argv[])
         
         switch(option)
         {
-                      case 1: rec = addStudents(stu, rec);
+                      case 1: recStudent = addStudents(stu, recStudent);
                            break;
-                      case 2:
+                      case 2: recCourse = addCourses(cor, recCourse);
                            break;
                       case 3: 
                            break;
-                      case 4:printStudents(stu, rec);
+                      case 4:printStudents(stu, recStudent);
                            break;
                       case 5: cout <<"Goobye!\n";
                            break;                           
