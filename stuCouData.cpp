@@ -29,8 +29,7 @@ int addStudents(Student* students, int studentsLen){
 		int e = scanf("%d",&inputLen);
 		if(e==0||inputLen<min)
 			cout <<"Incorrect input! Try again.\n";
-		if(e==0)
-			getchar();
+		getchar();
 	}while(inputLen<min);
 	for(int i = 0; i < inputLen; i++){
 		string id;
@@ -38,15 +37,15 @@ int addStudents(Student* students, int studentsLen){
 		string lastName;
 		cout <<"\nEnter Student's Id.\n";
 		while(true){
-			cin >>id;
+			getline(cin,id);
 			if(findStudent(students,studentsLen,id)!=studentsLen)
 				cout <<"A Student already has that Id! Try again.\n";
 			else break;
 		}
 		cout <<"Enter Student's First Name.\n";
-		cin >>firstName;
+		getline(cin,firstName);
 		cout <<"Enter Student's Last Name.\n";
-		cin >>lastName;
+		getline(cin,lastName);
 		*(students+studentsLen) = Student(firstName,lastName,id);
 		studentsLen++;
 	}
@@ -62,8 +61,7 @@ int addCourses(Course* courses, int coursesLen){
 		int e = scanf("%d",&inputLen);
 		if(e==0||inputLen<min)
 			cout <<"Incorrect input! Try again.\n";
-		if(e==0)
-			getchar();
+		getchar();
 	}while(inputLen<min);
 	for(int i = 0; i < inputLen; i++){
 		string id;
@@ -71,13 +69,13 @@ int addCourses(Course* courses, int coursesLen){
 		int credits = -1;
 		cout <<"\nEnter Course's Id.\n";
 		while(true){
-			cin >>id;
+			getline(cin,id);
 			if(findCourse(courses,coursesLen,id)!=coursesLen)
 				cout <<"A Course already has that Id! Try again.\n";
 			else break;
 		}
 		cout <<"Enter Course's Name.\n";
-		cin >>name;
+		getline(cin,name);
 		cout <<"Enter Course's Credits.\n";
 		do{
 			int e = scanf("%d",&credits);
@@ -102,7 +100,7 @@ void assignCourses(Student* students, Course* courses, int studentsLen, int cour
 		int studentLoc;
 		cout <<"Enter the Student's Id.\n";
 		do{
-			cin >>tempid;
+			getline(cin,tempid);
 			studentLoc = findStudent(students, studentsLen,tempid);
 			if(studentLoc==studentsLen)
 				cout <<"Id not found! Try again.\n";
@@ -116,14 +114,13 @@ void assignCourses(Student* students, Course* courses, int studentsLen, int cour
 			int e = scanf("%d",&inputLen);
 			if(e==0||inputLen<min)
 				cout <<"Incorrect input! Try again.\n";
-			if(e==0)
-				getchar();
+			getchar();
 		}while(inputLen<min);
 		for(int i = 0; i < inputLen; i++){
 			int courseLoc;
 			cout <<"Enter the Course's Id.\n";
 			do{
-				cin >>tempid;
+				getline(cin,tempid);
 				courseLoc = findCourse(courses, coursesLen,tempid);
 				if(courseLoc==coursesLen)
 					cout <<"Id not found! Try again.\n";
@@ -153,10 +150,10 @@ int menu(){
 	int result = -1;
 	while(result<0||result>5){
 		int e = scanf("%d",&result);
-		if(e==0||result<0||result>5)
+		if(e==0||result<0||result>5){
 			cout <<"Invalid option! Try again.\n";
-		else return result;
-		getchar();
+			getchar();
+		}else return result;
 	}
 }
 
