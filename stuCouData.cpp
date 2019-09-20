@@ -81,8 +81,7 @@ int addCourses(Course* courses, int coursesLen){
 			int e = scanf("%d",&credits);
 			if(e==0||credits<0)
 				cout <<"Incorrect input! Try again.\n";
-			if(e==0)
-				getchar();
+			getchar();
 		}while(credits<0);
 		*(courses+coursesLen) = Course(id,name,credits);
 		coursesLen++;
