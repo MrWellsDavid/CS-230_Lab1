@@ -27,9 +27,9 @@ int addStudents(Student* students, int studentsLen){
 	int inputLen = -1;
 	do{
 		int e = scanf("%d",&inputLen);
+		getchar();
 		if(e==0||inputLen<min)
 			cout <<"Incorrect input! Try again.\n";
-		getchar();
 	}while(inputLen<min);
 	for(int i = 0; i < inputLen; i++){
 		string id;
@@ -59,9 +59,9 @@ int addCourses(Course* courses, int coursesLen){
 	int inputLen = -1;
 	do{
 		int e = scanf("%d",&inputLen);
+		getchar();
 		if(e==0||inputLen<min)
 			cout <<"Incorrect input! Try again.\n";
-		getchar();
 	}while(inputLen<min);
 	for(int i = 0; i < inputLen; i++){
 		string id;
@@ -79,9 +79,9 @@ int addCourses(Course* courses, int coursesLen){
 		cout <<"Enter Course's Credits.\n";
 		do{
 			int e = scanf("%d",&credits);
+			getchar();
 			if(e==0||credits<0)
 				cout <<"Incorrect input! Try again.\n";
-			getchar();
 		}while(credits<0);
 		*(courses+coursesLen) = Course(id,name,credits);
 		coursesLen++;
@@ -111,9 +111,9 @@ void assignCourses(Student* students, Course* courses, int studentsLen, int cour
 		int inputLen = -1;
 		do{
 			int e = scanf("%d",&inputLen);
+			getchar();
 			if(e==0||inputLen<min)
 				cout <<"Incorrect input! Try again.\n";
-			getchar();
 		}while(inputLen<min);
 		for(int i = 0; i < inputLen; i++){
 			int courseLoc;
@@ -149,10 +149,10 @@ int menu(){
 	int result = -1;
 	while(result<0||result>5){
 		int e = scanf("%d",&result);
-		if(e==0||result<0||result>5){
+		getchar();
+		if(e==0||result<0||result>5)
 			cout <<"Invalid option! Try again.\n";
-			getchar();
-		}else return result;
+		else return result;
 	}
 }
 
