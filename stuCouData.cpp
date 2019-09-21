@@ -125,7 +125,7 @@ void assignCourses(Student* students, Course* courses, int studentsLen, int cour
 					cout <<"Id not found! Try again.\n";
 				else if(students->addCourse(courses+courseLoc)==0){
 					cout <<"Student already has that course! Try again.\n";
-				}else return;
+				}else break;
 			}while(true);
 		}
 	}
