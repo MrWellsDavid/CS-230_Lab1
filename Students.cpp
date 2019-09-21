@@ -40,7 +40,7 @@ void Students::setName(string first, string last)
      last_name = last;
 }
  
- 
+
  void Students::setID(string i)
  {
       id = "CTU-" + i;
