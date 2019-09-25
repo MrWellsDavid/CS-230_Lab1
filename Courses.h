@@ -1,4 +1,6 @@
 //Courses.h
+#ifndef COURSES_H
+#define COURSES_H
 #include<iostream>
 #include<string>
 using namespace std;
@@ -12,9 +14,9 @@ class Courses{
           Courses(string cName, string cID, int credits);
           
           //accessors
-          void print() const;
-          string getCourse() const;
-          string getCourseID() const;
+          void print() ;
+          string getCourse() ;
+          string getCourseID() ;
 
           
           //mutators
@@ -27,5 +29,7 @@ class Courses{
               string course_name;
               string courseID;
               int course_cred;
+              int cLength;
       
       };
+#endif

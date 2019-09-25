@@ -5,14 +5,30 @@
 
 using namespace std;
 
-int addStudents(Students* stuPTR, int counter)
+int findCourse(Courses* corPTR, int cLength, string courseID){
+	for(int i = 0; i < cLength; i++){
+		if((corPTR+i)->getCourseID().compare(courseID)==0)
+			return i;
+	}
+	return cLength;
+}
+
+int findStudent(Students* stuPTR, int sLength, string id){
+	for(int i = 0; i < sLength; i++){
+		if((stuPTR+i)->getID().compare(id)==0)
+			return i;
+	}
+	return sLength;
+}
+
+int addStudents(Students* stuPTR, int sLength)
 {
     string first, last, id;
     
     int stuNum;
     cout <<"How many students do you want to enter?: ";
     cin >>stuNum;
-    for (int i = 0; i < counter; i++)
+    for (int i = 0; i < sLength; i++)
         stuPTR++;        
         
     for (int i = 0; i < stuNum; i++)
@@ -31,13 +47,13 @@ int addStudents(Students* stuPTR, int counter)
         //move the pointer
         stuPTR++;
         //update the counter
-        counter++; 
+        sLength++; 
     }
     
     
-    return counter;
+    return sLength;
 }
-int addCourses(Courses* corPTR, int counter)
+int addCourses(Courses* corPTR, int cLength)
 {
     string cName,  courseID;
 	int credits;
@@ -45,7 +61,7 @@ int addCourses(Courses* corPTR, int counter)
     int corNum;
     cout <<"How many courses do you want to enter?: ";
     cin >>corNum;
-    for (int i = 0; i < counter; i++)
+    for (int i = 0; i < cLength; i++)
         corPTR++;        
         
     for (int i = 0; i < corNum; i++)
@@ -66,13 +82,53 @@ int addCourses(Courses* corPTR, int counter)
         //move the pointer
         corPTR++;
         //update the counter
-        counter++; 
+        cLength++; 
     }
     
     
-    return counter;
+    return cLength;
 }
-
+void assignCourses(Students* stuPTR, Courses* classes, int sLength, int cLength){
+	if(sLength < 4){
+		cout <<"\nplease assign students and courses # \n\n";
+	}else if(cLength < 10){
+		cout <<"\nEnter please assign courses for the students #\n\n";
+	}else{
+		string tempid;
+		int studentLoc;
+		cout <<"Enter the Student Id \n\n";
+		do{
+			getline(cin,tempid);
+			studentLoc = findStudent(stuPTR, sLength,tempid);
+			if(studentLoc==sLength)
+				cout <<"Id not found! Try again.\n";
+		}while(studentLoc==sLength);
+		stuPTR += studentLoc;
+		cout <<"Enter # of courses";
+		int min = max(0,4-stuPTR->getCLength());
+		printf(" (Minimum %d)\n",min);
+		int inputLen = -1;
+		do{
+			int e = scanf("%d",&inputLen);
+			getchar();
+			if(e==0||inputLen<min)
+				cout <<"Please try again \n\n";
+		}while(inputLen<min);
+		for(int i = 0; i < inputLen; i++){
+			int courseLoc;
+			cout <<"Enter Course Id\n\n";
+			do{
+				getline(cin,tempid);
+				courseLoc = findCourse(classes, cLength,tempid);
+				if(courseLoc==cLength)
+					cout <<"Invalid ID \n";
+				else if(stuPTR->addCourse(classes+courseLoc)==0){
+					cout <<"Student already assigned that course \n\n";
+				}else break;
+			}while(true);
+		}
+	}
+}
 void printStudents(Students* stuPTR, int counter)
 {
      for (int i = 0; i < counter; i++)
@@ -105,10 +161,10 @@ int main(int argc, char *argv[])
 {
 	
     int option;
-    Students stu[4];  //student buffer
-    Courses cor[10]; // Course buffer
-	int recStudent = 0;  //record counter 
-    int recCourse = 0; // course counter
+    Students stuPTR[4];  //student buffer
+    Courses classes[10]; // Course buffer
+	int sLength = 0;  //record counter 
+    int cLength = 0; // course counter
     
     do
     {
@@ -117,13 +173,13 @@ int main(int argc, char *argv[])
         
         switch(option)
         {
-                      case 1: recStudent = addStudents(stu, recStudent);
+                      case 1: sLength = addStudents(stuPTR, sLength);
                            break;
-                      case 2: recCourse = addCourses(cor, recCourse);
+                      case 2: cLength = addCourses(classes, cLength);
                            break;
-                      case 3: 
+                      case 3: assignCourses(stuPTR,classes,sLength,cLength);
                            break;
-                      case 4:printStudents(stu, recStudent);
+                      case 4:printStudents(stuPTR, sLength);
                            break;
                       case 5: cout <<"Goobye!\n";
                            break;                           
